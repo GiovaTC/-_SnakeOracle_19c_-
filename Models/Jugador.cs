@@ -4,7 +4,10 @@ using System.Text;
 
 namespace SnakeOracle19C.Models
 {
-    internal class Jugador
+    public class Jugador
     {
-    }
+        public int IdJugador { get; set; }
+        public string Nombre { get; set; } = string.Empty;
+        public DateTime FechaRegistro { get; set; }
+    }   
 }
