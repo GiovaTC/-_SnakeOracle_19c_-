@@ -47,6 +47,27 @@ namespace SnakeOracle19C.Game
                     break;
             }
 
+            Cuerpo.Insert(0, nuevaCabeza);
+
+            if (!crecer)
+            {
+                Cuerpo.RemoveAt(Cuerpo.Count - 1);
+            }
         }
+
+        public bool ChocaConSuCuerpo()
+        {
+            Point cabeza = ObtenerCabeza();
+            
+            for (int i = 1; i < Cuerpo.Count; i++)
+            {
+                if (Cuerpo[i] == cabeza)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }   
     }
 }
