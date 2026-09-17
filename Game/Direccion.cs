@@ -4,7 +4,11 @@ using System.Text;
 
 namespace SnakeOracle19C.Game
 {
-    internal class Direccion
+    public enum Direccion
     {
-    }
+        Arriba,
+        Abajo,
+        Izquierda,
+        Derecha
+    }   
 }
