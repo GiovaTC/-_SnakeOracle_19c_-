@@ -100,11 +100,6 @@ namespace SnakeOracle19C
             InicializarJuego();
         }
 
-        private void Form1_KeyDown(object? sender, KeyEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
         private void Timer_Tick(object? sender, EventArgs e)
         {
             if (!jugando)
@@ -202,6 +197,57 @@ namespace SnakeOracle19C
             }
             txtJugador.Enabled = true;  
             btnIniciar.Enabled = true;                
+        }
+
+        private void Form1_KeyDown(object? sender, KeyEventArgs e)
+        {
+            if (!jugando)
+            {
+                return;
+            }
+
+            switch (e.KeyCode)  
+            {
+                case Keys.Up:
+
+                    if (serpiente.DireccionActual 
+                        != Direccion.Abajo)
+                    {
+                        serpiente.DireccionActual = Direccion.Arriba;   
+                    }
+
+                    break;
+
+                case Keys.Down:
+
+                    if (serpiente.DireccionActual 
+                        != Direccion.Arriba)
+                    {
+                        serpiente.DireccionActual = Direccion.Abajo;
+                    }
+
+                    break;
+
+                case Keys.Left:
+
+                    if(serpiente.DireccionActual 
+                        != Direccion.Derecha)
+                    {
+                        serpiente.DireccionActual = Direccion.Izquierda;
+                    }
+
+                    break;
+
+                case Keys.Right:
+
+                    if(serpiente.DireccionActual 
+                        != Direccion.Izquierda)
+                    {
+                        serpiente.DireccionActual = Direccion.Derecha;
+                    }
+
+                    break;
+            }   
         }   
 
         private void Form1_Load(object sender, EventArgs e)
