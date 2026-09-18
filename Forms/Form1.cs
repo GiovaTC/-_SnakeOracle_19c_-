@@ -248,6 +248,52 @@ namespace SnakeOracle19C
 
                     break;
             }   
+        }
+        
+        private void panelJuego_Paint(Object? sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+
+            g.Clear(Color.Black);
+
+            using Brush brushSerpiente = 
+                new SolidBrush(Color.LimeGreen);    
+
+            using Brush brushCabeza =
+                new SolidBrush(Color.Green);    
+
+            using Brush brushComida =
+                new SolidBrush(Color.Red);
+
+            foreach (Point punto in serpiente.Cuerpo)
+            {
+                Rectangle rect = new Rectangle(
+                    punto.X * TamanoCelda,
+                    punto.Y * TamanoCelda,
+                    TamanoCelda - 1,
+                    TamanoCelda - 1
+                );
+
+                g.FillRectangle(
+                    punto == serpiente.ObtenerCabeza()
+                        ? brushCabeza
+                        : brushSerpiente,
+                    rect
+                );  
+            }
+
+            Rectangle comidaRect = 
+                new Rectangle(
+                    comida.Posicion.X * TamanoCelda,
+                    comida.Posicion.Y * TamanoCelda,
+                    TamanoCelda - 1,
+                    TamanoCelda - 1
+                );
+
+            g.FillEllipse(
+                brushComida,
+                comidaRect
+            );
         }   
 
         private void Form1_Load(object sender, EventArgs e)
