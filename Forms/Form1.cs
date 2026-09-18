@@ -1,4 +1,5 @@
 using SnakeOracle19C.Data;
+using SnakeOracle19C.Forms;
 using SnakeOracle19C.Game;
 using SnakeOracle19C.Models;
 using System.Drawing;
@@ -294,11 +295,19 @@ namespace SnakeOracle19C
                 brushComida,
                 comidaRect
             );
+        }
+        
+        private void btnRanking_Click(object sender, EventArgs e)
+        {
+            FrmRanking ranking = 
+                new FrmRanking();
+            
+            ranking.ShowDialog();
         }   
 
-        private void Form1_Load(object sender, EventArgs e)
+     /*   private void Form1_Load(object sender, EventArgs e)
         {
 
-        }
+        }*/
     }
 }
