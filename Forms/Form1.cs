@@ -126,7 +126,32 @@ namespace SnakeOracle19C
                     Filas,
                     serpiente.Cuerpo
                 );
-            }   
+            }
+            
+            if (ColisionConParedes() || serpiente.ChocaConSuCuerpo())
+            {
+                FinalizarJuego();
+
+                return;
+            }
+
+            lblPuntuacion.Text =
+                "PUNTUACION: " + puntuacion;    
+
+            lblLongitud.Text =
+                "LONGITUD: " + serpiente.Cuerpo.Count;
+
+            panelJuego.Invalidate();    
+        }   
+
+        private bool ColisionConParedes()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void FinalizarJuego()
+        {
+            throw new NotImplementedException();
         }
 
         private void Form1_Load(object sender, EventArgs e)
