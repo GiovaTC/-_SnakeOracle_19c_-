@@ -70,7 +70,7 @@ namespace SnakeOracle19C.Data
             return Convert.ToInt32(parametroId.Value.ToString());
         }
 
-        public void GuardarPrtida(Partida partida)
+        public void GuardarPartida(Partida partida)
         {
             using OracleConnection connection = conexion.obtenerConexion();
             connection.Open();

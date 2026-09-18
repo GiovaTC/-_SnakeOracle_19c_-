@@ -146,13 +146,63 @@ namespace SnakeOracle19C
 
         private bool ColisionConParedes()
         {
-            throw new NotImplementedException();
+            Point cabeza = serpiente.ObtenerCabeza();   
+
+            return cabeza.X < 0 || cabeza.X >= Columnas ||
+                   cabeza.Y < 0 || cabeza.Y >= Filas;
         }
 
         private void FinalizarJuego()
         {
-            throw new NotImplementedException();
-        }
+            timer.Stop();
+            jugando = false;
+
+            lblEstado.Text = "GAME OVER";
+
+            try
+            {
+                int idJugador =
+                    partidaDAO.ObtenerOCrearJugador(
+                        nombreJugador
+                    );
+
+                Partida partida = new Partida
+                {
+                    IdJugador = idJugador,
+                    Puntuacion = puntuacion,
+
+                    LongitudSerpiente =
+                        serpiente.Cuerpo.Count,
+                    Resultado = "GAME OVER",
+                    FechaPartida = DateTime.Now
+                };
+                partidaDAO.GuardarPartida(partida);
+
+                MessageBox.Show(
+                    $"GAME OVER\n\n" +
+                    $"Jugador: {nombreJugador}\n" +
+                    $"Puntuacion: {puntuacion}\n" +
+                    $"Longitud: {serpiente.Cuerpo.Count}\n\n" +
+                    "La partida fue guardada en ORACLE.",
+                    "SNAKE",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                    );
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "La partida termino, pero no fue posible " +
+                    "guardar la informacion en ORACLE.\n\n" +
+                    ex.Message,
+                    "ERROR oracle",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                    );
+            }
+            txtJugador.Enabled = true;  
+            btnIniciar.Enabled = true;                
+        }   
 
         private void Form1_Load(object sender, EventArgs e)
         {
