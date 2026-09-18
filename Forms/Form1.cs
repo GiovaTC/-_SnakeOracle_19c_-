@@ -57,7 +57,7 @@ namespace SnakeOracle19C
             lblPuntuacion.Text = "Puntuacion: 0";
 
             lblLongitud.Text =
-                "Longitud: " + 
+                "Longitud: " +
                 serpiente.Cuerpo.Count;
 
             lblEstado.Text =
@@ -88,12 +88,12 @@ namespace SnakeOracle19C
             lblEstado.Text = "Jugando... ";
             txtJugador.Enabled = false;
             btnIniciar.Enabled = false;
-        }   
+        }
 
         private void btnReiniciar_Click(object? sender, EventArgs e)
-        { 
+        {
             timer.Stop();
-            
+
             txtJugador.Enabled = true;
             btnIniciar.Enabled = true;
 
@@ -107,7 +107,31 @@ namespace SnakeOracle19C
 
         private void Timer_Tick(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            if (!jugando)
+            {
+                return;
+            }
+
+            bool comer =
+                serpiente.ObtenerCabeza() == comida.Posicion;
+
+            serpiente.Mover(comer);
+
+            if (comer)
+            {
+                puntuacion += 10;
+
+                comida.Generar(
+                    Columnas,
+                    Filas,
+                    serpiente.Cuerpo
+                );
+            }   
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
